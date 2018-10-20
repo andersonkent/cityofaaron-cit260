@@ -1,0 +1,22 @@
+
+# Eclipse stuff (created by vscode java extension)
+.settings/
+.project
+.classpath
+
+# netbeans stuff
+/.nb-gradle/
+
+# vscode stuff
+.vscode/
+
+# temporary gradle stuff
+.gradle/
+
+# normal project stuff that gets rebuilt every time
+build/
+bin/
+.class
+
+# macos turds
+.DS_Store
