@@ -10,6 +10,6 @@ import lombok.*;
 public class InventoryItem {
     private String name;
     private ItemType itemType;
-    private int quanity;
+    private int quantity;
     private Condition condition;
 }
