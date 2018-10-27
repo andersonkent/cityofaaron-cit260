@@ -19,7 +19,31 @@ public class WheatControl {
      * @return The number of bushels harvested
      */
     public static int calculateHarvest(int tithesPercent, int acresPlanted){
-        return -1;
+        
+        if (acresPlanted < 0){
+            return -1;
+        }
+
+        if (tithesPercent < 0 || tithesPercent > 100){
+            return -2;
+        }
+
+        int low = 0;
+        int high = 0;
+
+        if (tithesPercent < 8){
+            low = 1;
+            high = 3;
+        } else if (tithesPercent >= 8 && tithesPercent <= 12){
+            low = 2;
+            high = 4;
+        } else {
+            low = 2;
+            high = 5;
+        }
+ 
+        int yieldPerAcre = GameControl.getRandomNumber(low, high);
+        return yieldPerAcre * acresPlanted;
     }
 
 
@@ -39,7 +63,38 @@ public class WheatControl {
      * @return The number of bushels lost
      */
     public static int calculateLossToRats(int tithesPercent, int wheatInStorage){
-        return -1;
+
+        if (wheatInStorage < 0){
+            return -1;
+        }
+
+        if (tithesPercent < 0 || tithesPercent > 100){
+            return -2;
+        }
+
+        int chanceOfRats = GameControl.getRandomNumber(1, 100);
+        if (chanceOfRats >= 30){
+            // no rats this time
+            return 0; 
+        }
+
+        int low;
+        int high;
+
+        if (tithesPercent < 8){
+            low = 6;
+            high = 10;
+        } else if (tithesPercent >= 8 && tithesPercent <= 12){
+            low = 3;
+            high = 7;
+        } else {
+            low = 3;
+            high = 5;
+        }
+
+        double percentLost = GameControl.getRandomNumber(low, high) * 0.01;
+
+        return (int)Math.round(wheatInStorage * percentLost);
     }
 
 

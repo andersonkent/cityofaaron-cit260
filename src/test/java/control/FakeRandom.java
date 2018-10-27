@@ -15,6 +15,17 @@ public class FakeRandom extends Random {
     // Store the predetermined integer value that have been added to the object.
     private ArrayList<Integer> integersToReturn = new ArrayList<>();
 
+
+    /**
+     * Constructor. 
+     * @param values (Optional) the list of values to be used.
+     */
+    public FakeRandom(int... values){
+        for (int value : values) {
+            add(value);
+        }   
+    }
+
     /**
      * Add the specified integer value to the list of values that will be
      * returned by the nextInt() method.
