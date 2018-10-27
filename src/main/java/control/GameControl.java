@@ -3,6 +3,7 @@ package control;
 import java.util.Random;
 
 import model.Game;
+import model.Player;
 
 
 public class GameControl {
@@ -17,9 +18,15 @@ public class GameControl {
         randomGenerator = random;
     }
     
-
+    /**
+     * Returns a fully initialized Game object
+     * @param playerName
+     * @return
+     */
     public static Game createNewGame(String playerName){
-        return null;
+        Player player = new Player(playerName);
+        Game game = Game.builder().thePlayer(player).build();
+        return game;
     }
 
 
