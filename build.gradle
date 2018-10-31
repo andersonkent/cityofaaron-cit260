@@ -28,6 +28,10 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok:1.18.2'
 }
 
+run {
+    standardInput = System.in
+}
+
 // This helps build an executable Jar file, which you can 
 // run like this:
 //

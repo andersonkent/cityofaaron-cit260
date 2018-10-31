@@ -32,6 +32,10 @@ public class GetRandomNumberTests {
 
     @Test
     public void validRangeTest(){
+
+        // Make sure GameControl has a normal Random in it.
+        GameControl.setRandomGenerator(new java.util.Random());
+
         int[][] testRanges = new int[][]{
             {1, 10},
             {15, 100},
