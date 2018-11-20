@@ -4,9 +4,21 @@
  */
 package app;
 
+import model.Game;
 import view.StartProgramView;
 
 public class CityOfAaron {
+
+    private static Game currentGame;
+
+
+    public static Game getCurrentGame(){
+        return currentGame;
+    }
+
+    public static void setCurrentGame(Game game) {
+        currentGame = game;
+    }
 
     /**
      * The starting point for our application. 

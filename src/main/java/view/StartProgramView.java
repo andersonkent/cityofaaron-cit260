@@ -5,20 +5,20 @@ package view;
  *
  * @author kanderson
  */
-public class StartProgramView {
+public class StartProgramView extends ViewBase {
     
     
-    /**
-     * The message that will be displayed by this view.
-     */
-    protected String message;
     
     /**
      * Constructor
      */
     public StartProgramView(){
-        
-        message = 
+        super();
+    }
+
+    public String getMessage(){
+    
+        return
           "/---------------------------------------------------\\\n"
         + "|  WELCOME TO THE CITY OF AARON!                    |\\\n"
         + "|                                                   |\\\n"
@@ -64,28 +64,12 @@ public class StartProgramView {
      */
     public boolean doAction(String[] inputs){
         // Ignore inputs in this view
+        pause(2000);
 
         loadMainMenu();
 
         // if we get back here, return false and end the program.
         return false;
-    }
-    
-    
-    /**
-     * Control this view's display/prompt/action loop until the user
-     * chooses and action that causes this view to close.
-     */
-    public void displayView(){
-        
-        boolean keepGoing = true;
-        
-        while(keepGoing == true){
-            
-            System.out.println(message);
-            String[] inputs = getInputs();
-            keepGoing = doAction(inputs);
-        }
     }
     
     

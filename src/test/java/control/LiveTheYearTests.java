@@ -5,6 +5,7 @@ import org.junit.Before;
 
 import model.AnnualReport;
 import model.Game;
+import model.Game.GameBuilder;
 
 import static org.junit.Assert.*;
 

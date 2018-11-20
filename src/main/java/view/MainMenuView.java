@@ -1,83 +1,30 @@
 
 package view;
 
-import java.io.BufferedReader;
-import java.io.Console;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Scanner;
-
 /**
  *
  * @author kanderson
  */
-public class MainMenuView {
+public class MainMenuView extends ViewBase {
     
-    
-    /**
-     * The message that will be displayed by this view.
-     */
-    protected String message;
     
     /**
      * Constructor
      */
     public MainMenuView(){
+        super();
+    }
+
+    public String getMessage(){
         
-        message = 
+        return
             "MAIN MENU\n"
             + "N - Start a New Game\n"
             + "L - Load a Saved Game\n"
             + "H - Help Menu\n"
             + "Q - Quit the Program\n";
-                
     }
     
-    
-    /**
-     * Get the user's input. Keep prompting them until they enter a value.
-     * @param prompt
-     * @param allowEmpty - determine whether the user can enter no value (just a return key)
-     * @return 
-     */
-    protected String getUserInput(String prompt, boolean allowEmpty){
-        
-        Scanner keyboard = new Scanner(System.in);
-        String input = "";
-        boolean inputReceived = false;
-        
-        while(inputReceived == false){
-            
-            System.out.println(prompt);
-            input = keyboard.nextLine();
-            
-            // Make sure we avoid a null-pointer error.
-            if (input == null){
-                input = "";
-            }
-            
-            // Trim any trailing whitespace, including the carriage return.
-            input = input.trim();
-            
-            if (input.equals("") == false || allowEmpty == true){
-                inputReceived = true;
-            }
-        }
-        
-        return input;
-        
-    }
-    
-    
-    /**
-     * An overloaded version of getUserInput that sets allowEmpty to false so we don't have 
-     * to type it ourselves.
-     * @param prompt
-     * @return 
-     */
-    protected String getUserInput(String prompt){
-        return getUserInput(prompt, false);
-    }
     
     /**
      * Get the set of inputs from the user.
@@ -89,9 +36,11 @@ public class MainMenuView {
         // from the user.
         String[] inputs = new String[1];
         
-        inputs[0] = getUserInput("Please make your selection:");
-        
-        // Repeat for each input you need, putting it into its proper slot in the array.
+        inputs[0] = getUserInput(
+            "Please make your selection:", 
+            "Please select a valid menu option\n",
+            ViewBase::notNullOrWhitespace,
+            s -> ViewBase.in(s.toUpperCase(), "N", "L", "H", "Q"));
         
         return inputs;
     }
@@ -126,28 +75,9 @@ public class MainMenuView {
             case "Q":
                 keepGoing = false;
                 break;
-            default:
-                System.out.println("Invalid menu selection.");
         }
         
         return keepGoing;
-    }
-    
-    
-    /**
-     * Control this view's display/prompt/action loop until the user
-     * chooses and action that causes this view to close.
-     */
-    public void displayView(){
-        
-        boolean keepGoing = true;
-        
-        while(keepGoing == true){
-            
-            System.out.println(message);
-            String[] inputs = getInputs();
-            keepGoing = doAction(inputs);
-        }
     }
     
     
@@ -157,7 +87,7 @@ public class MainMenuView {
     
     
     private void newGame(){
-        System.out.println("newGame called.");
+        new NewGameView().displayView();
     }
 
     private void loadGame(){

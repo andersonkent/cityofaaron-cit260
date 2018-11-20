@@ -13,4 +13,8 @@ public class Game {
     private int currentPopulation;
     private int acresOwned;
     private int wheatInStorage;
+
 }
+
+
+
