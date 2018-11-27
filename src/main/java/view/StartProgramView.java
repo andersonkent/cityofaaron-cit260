@@ -1,11 +1,12 @@
-
 package view;
+
+import java.util.function.BooleanSupplier;
 
 /**
  *
  * @author kanderson
  */
-public class StartProgramView extends ViewBase {
+public class StartProgramView extends ReadOnlyView {
     
     
     
@@ -47,30 +48,15 @@ public class StartProgramView extends ViewBase {
     }
     
     
-    /**
-     * Get the set of inputs from the user.
-     * @return 
-     */
-    public String[] getInputs() {
-        return null;
-    }
     
-    
-    /**
-     * Perform the action indicated by the user's input.
-     * @param inputs
-     * @return true if the view should repeat itself, and false if the view
-     * should exit and return to the previous view.
-     */
-    public boolean doAction(String[] inputs){
-        // Ignore inputs in this view
-        pause(2000);
-
-        loadMainMenu();
-
-        // if we get back here, return false and end the program.
-        return false;
-    }
+    @Override
+    public BooleanSupplier getPostMessageAction() {
+        return () -> {
+            pause(1500);
+            loadMainMenu();
+            return false;
+        };
+	}
     
     
     // Define your action handlers here. These are the methods that your doAction()
@@ -88,7 +74,9 @@ public class StartProgramView extends ViewBase {
             + "|  GOOD-BYE!                                        |\\\n"
             + "|                                                   |\\\n"
             + "|  Thank you for playing.                           |\\\n"
-            + "\\---------------------------------------------------/\\\n" );
-        
+            + "\\---------------------------------------------------/\\\n");
+
     }
+
+    
 }
