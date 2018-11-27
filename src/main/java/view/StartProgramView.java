@@ -56,7 +56,7 @@ public class StartProgramView extends ReadOnlyView {
             loadMainMenu();
             return false;
         };
-	}
+    }
     
     
     // Define your action handlers here. These are the methods that your doAction()
