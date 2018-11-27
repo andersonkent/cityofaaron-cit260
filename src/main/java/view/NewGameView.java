@@ -9,7 +9,7 @@ import model.Player;
  *
  * @author kanderson
  */
-public class NewGameView extends ViewBase {
+public class NewGameView extends UserInputView {
     
     
     /**
@@ -24,23 +24,13 @@ public class NewGameView extends ViewBase {
             + "make your mark on the city. Good luck!\n\n";
     }
     
-    
-    /**
-     * Get the set of inputs from the user.
-     * @return 
-     */
-    public String[] getInputs() {
-        
-        // Declare the array to have the number of elements you intend to get 
-        // from the user.
-        String[] inputs = new String[1];
-        
-        inputs[0] = getUserInput(
-            "Please enter your name, or simply press Enter to return to the previous menu:");
-        
-        return inputs;
+    @Override
+    public UserInputItem[] getUserInputItems() {
+        return new UserInputItem[] {
+            new UserInputItem("Please enter your name, or simply press Enter to return to the previous menu:")
+        };
     }
-    
+
     
     /**
      * Perform the action indicated by the user's input.
@@ -70,5 +60,7 @@ public class NewGameView extends ViewBase {
         CityOfAaron.setCurrentGame(game);
 
         // todo: lots more initialization to do here...
+
+        new GameMenuView().displayView();
     }
 }
