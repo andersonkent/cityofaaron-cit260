@@ -28,19 +28,29 @@ public class MainMenuView extends MenuView {
             }),
 
             new MenuItem("L", "Load a saved game", () -> {
-                System.out.println("Load game called.");
+                loadGame();
                 return true;
             }),
 
-            new MenuItem("H", "Help menu", () -> {
-                System.out.println("Help menu called.");
-                return true;
-            }),
+            HELP_MENU,
 
             new MenuItem("Q", "Quit the program", () -> {
                 // keep going = false
                 return false;
             }) };
+    }
+
+
+
+    private void loadGame(){
+        GetFilenameView filenameView = new GetFilenameView(GetFilenameView.FileMode.Open);
+        filenameView.displayView();
+        if (filenameView.hasFilename() == false){
+            System.out.println("No file entered");
+            return;
+        }
+
+        System.out.println("Will load game from " + filenameView.getFilename());
     }
 
 }

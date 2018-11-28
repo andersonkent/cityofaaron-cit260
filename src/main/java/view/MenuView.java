@@ -19,6 +19,12 @@ public abstract class MenuView extends ViewBase {
     private MenuItem[] menuItems = null;
 
 
+    protected final MenuItem HELP_MENU = new MenuItem("H", "Help menu", () -> {
+        new HelpMenuView().displayView();
+        return true;
+    });
+
+
     public abstract String getMenuIntroduction();
     public abstract MenuItem[] getMenuItems();
 

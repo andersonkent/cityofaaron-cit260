@@ -36,6 +36,8 @@ public class ManageCropsView extends MenuView {
                 return true;
             }),
 
+            HELP_MENU,
+
             new MenuItem("Q", "Return to the previous menu", () -> {
                 return false;
             }),

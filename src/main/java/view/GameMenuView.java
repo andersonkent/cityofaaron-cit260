@@ -40,6 +40,8 @@ public class GameMenuView extends MenuView {
                 return true;
             }),
 
+            HELP_MENU,
+            
             new MenuItem("Q", "End the game and return to the Main Menu", () -> {
                 return false;
             })

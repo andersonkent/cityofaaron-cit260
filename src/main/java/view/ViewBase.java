@@ -81,7 +81,7 @@ public abstract class ViewBase implements View {
      * @return 
      */
     protected String getUserInput(String prompt){
-        return getUserInput(prompt, null);
+        return getUserInput(prompt, (Function<String,Boolean>)null);
     }
 
     /**
@@ -105,7 +105,10 @@ public abstract class ViewBase implements View {
         
         while(keepGoing == true){
             
-            System.out.println(getMessage());
+            String msg = getMessage();
+            if (msg != null){
+                System.out.println(msg);
+            }
             String[] inputs = getInputs();
             keepGoing = doAction(inputs);
         }
