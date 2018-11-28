@@ -1,5 +1,8 @@
 package view;
 
+import app.CityOfAaron;
+import control.GameControl;
+
 public class GameMenuView extends MenuView {
 
     @Override
@@ -12,12 +15,12 @@ public class GameMenuView extends MenuView {
         return new MenuItem[] {
             
             new MenuItem("M", "View the map", () -> {
-                System.out.println("Map coming soon");
+                new MapView().displayView();
                 return true;
             }),
 
             new MenuItem("L", "Move to a new location", () -> {
-                System.out.println("Move function coming soon");
+                new NewLocationView().displayView();
                 return true;
             }),
 
@@ -36,7 +39,7 @@ public class GameMenuView extends MenuView {
             }),
 
             new MenuItem("S", "Save the game", () -> {
-                System.out.println("Save game coming soon");
+                saveGame();
                 return true;
             }),
 
@@ -53,6 +56,23 @@ public class GameMenuView extends MenuView {
     private boolean liveTheYear() {
         System.out.println("Live the Year coming soon");
         return true;
+    }
+
+
+
+    private void saveGame() {
+
+        GetFilenameView filenameView = new GetFilenameView(GetFilenameView.FileMode.Save);
+        filenameView.displayView();
+
+        String filename = filenameView.hasFilename() ? filenameView.getFilename() : null;
+        if (filename == null){
+            System.out.println("No file provided. The game has not been saved.");
+            return;
+        }
+
+        GameControl.saveGameToFile(CityOfAaron.getCurrentGame(), filename);
+        System.out.println("The game has been saved to " + filename);
     }
 
 }

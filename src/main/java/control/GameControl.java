@@ -3,7 +3,10 @@ package control;
 import java.util.Random;
 
 import model.Game;
+import model.Location;
+import model.Map;
 import model.Player;
+import model.Point;
 import model.AnnualReport;
 
 
@@ -26,13 +29,21 @@ public class GameControl {
      */
     public static Game createNewGame(String playerName){
         Player player = new Player(playerName);
-        Game game = Game.builder().thePlayer(player).build();
+        Game game = Game.builder()
+        .thePlayer(player)
+        .acresOwned(1000)
+        .currentPopulation(1000)
+        .wheatInStorage(5000)
+        .theMap(MapControl.createMap())
+        .theStorehouse(StorehouseControl.createStorehouse())
+        .build();
+
         return game;
     }
 
 
     public static Game loadGameFromFile(String filename){
-        return null;
+        return app.CityOfAaron.getCurrentGame();
     }
 
 
@@ -101,7 +112,7 @@ public class GameControl {
         report.setEndingWheatInStorage(game.getWheatInStorage());
         report.setEndingPopulation(game.getCurrentPopulation());
         report.setEndingAcresOwned(game.getAcresOwned());
-        
+
         return report;
     }
 

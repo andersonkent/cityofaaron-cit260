@@ -2,8 +2,8 @@
 package view;
 
 import app.CityOfAaron;
+import control.GameControl;
 import model.Game;
-import model.Player;
 
 /**
  *
@@ -55,8 +55,7 @@ public class NewGameView extends UserInputView {
     
     
     private void newGame(String playerName){
-        Player player = new Player(playerName);
-        Game game = Game.builder().thePlayer(player).build();
+        Game game = GameControl.createNewGame(playerName);
         CityOfAaron.setCurrentGame(game);
 
         // todo: lots more initialization to do here...

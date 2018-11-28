@@ -105,6 +105,7 @@ public abstract class ViewBase implements View {
         
         while(keepGoing == true){
             
+            System.out.println();
             String msg = getMessage();
             if (msg != null){
                 System.out.println(msg);

@@ -4,7 +4,7 @@ package view;
 public class GetFilenameView extends UserInputView {
 
     public static enum FileMode {
-        Open, Close;
+        Load, Save;
     }
 
     private String filename;
@@ -28,7 +28,7 @@ public class GetFilenameView extends UserInputView {
     @Override
     public UserInputItem[] getUserInputItems() {
 
-        String operation = (fileMode == FileMode.Open ? "load" : "save");
+        String operation = (fileMode == FileMode.Load ? "load" : "save");
         return new UserInputItem[] {
             new UserInputItem("Enter the file to " + operation + ":")
         };

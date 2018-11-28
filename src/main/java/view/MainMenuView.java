@@ -1,6 +1,10 @@
 
 package view;
 
+import app.CityOfAaron;
+import control.GameControl;
+import model.Game;
+
 /**
  *
  * @author kanderson
@@ -43,14 +47,16 @@ public class MainMenuView extends MenuView {
 
 
     private void loadGame(){
-        GetFilenameView filenameView = new GetFilenameView(GetFilenameView.FileMode.Open);
+        GetFilenameView filenameView = new GetFilenameView(GetFilenameView.FileMode.Load);
         filenameView.displayView();
         if (filenameView.hasFilename() == false){
-            System.out.println("No file entered");
+            System.out.println("No file entered. No game was loaded.");
             return;
         }
 
-        System.out.println("Will load game from " + filenameView.getFilename());
+        Game game = GameControl.loadGameFromFile(filenameView.getFilename());
+        CityOfAaron.setCurrentGame(game);
+        new GameMenuView().displayView();
     }
 
 }
